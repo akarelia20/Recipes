@@ -49,7 +49,6 @@ def dashbord():
         "id" : session['user_id']
     }
     all_recipes = recipe.Recipe.get_likes()
-    # likes = recipe.Recipe.get_likes(data)
     return render_template("dashbord.html",logged_in_user = user.User.get_user_by_id(data), recipes = all_recipes)
 
 @app.route("/logout")
