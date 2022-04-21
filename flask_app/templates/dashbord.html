@@ -36,7 +36,9 @@
                             <button><a href="/recipe/{{recipe.id}}">View</a></button>
                             <button><a href="/recipe/edit/{{recipe.id}}">Edit</a></button>
                             <button><a href="/recipe/delete/{{recipe.id}}">Delete</a></button>
-                            
+                        {% elif logged_in_user.id in recipe.likes|map(attribute = "likeby_users_id") %}
+                            <button><a href="/recipe/{{recipe.id}}">View</a></button>
+                            <button><a href="/recipe/dislike/{{recipe.id}}">Dislike</a></button>
                         {% else %}
                             <button><a href="/recipe/{{recipe.id}}">View</a></button>
                             <button><a href="/recipe/like/{{recipe.id}}">Like</a></button>

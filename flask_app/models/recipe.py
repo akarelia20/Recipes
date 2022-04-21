@@ -81,6 +81,11 @@ class Recipe:
         query = "INSERT into likes (recipes_id, likeby_users_id) VALUES (%(recipes_id)s,%(likeby_users_id)s);"
         return MySQLConnection(cls.db).query_db(query,data)
 
+    @classmethod
+    def remove_likes(cls,data):
+        query = "DELETE FROM likes WHERE recipes_id = %(recipes_id)s and likeby_users_id = %(likeby_users_id)s;"
+        return MySQLConnection(cls.db).query_db(query,data)
+
     # using this method is more efficient and we don't need "getall_recipes" method because it gets "all the recipes" and "recipes.likes" both
     @classmethod
     def get_likes(cls):

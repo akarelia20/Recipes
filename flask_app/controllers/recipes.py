@@ -77,6 +77,16 @@ def like_recipe(id):
     recipe.Recipe.save_likes(data)
     return redirect("/dashbord")
 
+
+@app.route("/recipe/dislike/<int:id>")
+def dislike_recipe(id):
+    data = {
+        "recipes_id": id,
+        "likeby_users_id": session["user_id"]
+    }
+    recipe.Recipe.remove_likes(data)
+    return redirect("/dashbord")
+
 @app.route('/recipe/delete/<int:id>')
 def delete(id):
     if 'user_id' not in session:
